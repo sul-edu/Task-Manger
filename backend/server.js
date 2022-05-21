@@ -1,3 +1,5 @@
+const connectDB = require('./db/connect')
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -21,6 +23,16 @@ app.get('/', (req,res) => {
 // app.delete('/api/v1/tasks/:id')  --delete task 
 
 
-app.listen(port, ()=>{
-    console.log(`server is running at ${port}...`)
-})
+const start = async() => {
+    try{
+        await connectDB()
+        app.listen(port, ()=>{
+            console.log(`server is running at ${port}...`)
+        })
+    }catch(e){
+        console.log(e)
+    }
+}
+
+start();
+

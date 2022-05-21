@@ -45,6 +45,8 @@ const updateTask = async (req,  res) => {
         const {body} = req;
         const task =
     res.status(201).json({id:req.params.id});
+    }catch(e){
+        res.status(500).json({message : e})
     }
 }
 
